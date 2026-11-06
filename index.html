@@ -1,61 +1,138 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GNZ Rahil AI Video Generator</title>
+<title>GNZ RAHIL AI VIDEO</title>
+
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #101426;
-  color: white;
-  text-align: center;
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#090b18;
+ color:white;
+ text-align:center;
+ padding:20px;
 }
-.container {
-  padding: 25px;
+h1{color:#8b7cff;margin-top:25px}
+.container{
+ max-width:500px;
+ margin:30px auto;
+ background:#171a30;
+ padding:22px;
+ border-radius:18px;
 }
-h1 { color: #8b7cff; }
-textarea {
-  width: 90%;
-  height: 120px;
-  padding: 12px;
-  border-radius: 12px;
-  font-size: 16px;
+.upload{
+ display:block;
+ background:#292d4c;
+ border:2px dashed #897aff;
+ padding:30px 10px;
+ border-radius:14px;
+ cursor:pointer;
+ margin:20px 0;
 }
-button {
-  background: #795cff;
-  color: white;
-  border: none;
-  padding: 14px 25px;
-  border-radius: 10px;
-  margin-top: 15px;
-  font-size: 17px;
+input[type=file]{display:none}
+img{
+ max-width:100%;
+ max-height:250px;
+ border-radius:12px;
+ margin-top:15px;
 }
+textarea{
+ width:100%;
+ height:110px;
+ background:#090b18;
+ color:white;
+ padding:14px;
+ border:1px solid #555;
+ border-radius:10px;
+ resize:vertical;
+}
+button{
+ width:100%;
+ padding:15px;
+ margin-top:15px;
+ background:#7665ff;
+ color:white;
+ border:0;
+ border-radius:10px;
+ font-size:17px;
+ font-weight:bold;
+ cursor:pointer;
+}
+#status{color:#bdb5ff}
 </style>
 </head>
+
 <body>
-<div class="container">
+
 <h1>GNZ RAHIL AI</h1>
-<h2>AI Video Generator 🎬</h2>
-<p>Apna video prompt likho</p>
+<p>AI Video Generator</p>
+
+<div class="container">
+
+<h2>Create Your Video</h2>
+
+<label class="upload" for="imageInput">
+📸<br><br>
+Click Here To Upload Image
+</label>
+
+<input type="file" id="imageInput" accept="image/*">
+
+<div id="preview"></div>
+
+<h3>Enter Your Video Prompt</h3>
+
 <textarea id="prompt" placeholder="Describe your video..."></textarea>
-<br>
+
 <button onclick="generate()">Generate Video</button>
-<p id="result"></p>
+
+<p id="status"></p>
+
 </div>
+
 <script>
-function generate() {
-let p = document.getElementById("prompt").value;
-if(p.trim() === "") {
-document.getElementById("result").innerText =
-"Please enter a prompt!";
-} else {
-document.getElementById("result").innerText =
-"Your prompt: " + p +
-"\n\nVideo generation API abhi connect karni baaki hai.";
-}
+const input = document.getElementById("imageInput");
+
+input.addEventListener("change", function(){
+ const file = this.files[0];
+ if(!file) return;
+
+ if(!file.type.startsWith("image/")){
+  alert("Please select an image.");
+  return;
+ }
+
+ const url = URL.createObjectURL(file);
+
+ document.getElementById("preview").innerHTML =
+ '<img src="'+url+'" alt="Uploaded Image">';
+
+ document.getElementById("status").innerText =
+ "Image uploaded successfully!";
+});
+
+function generate(){
+ const prompt = document.getElementById("prompt").value;
+ const file = input.files[0];
+
+ if(!file){
+  alert("Please upload an image first!");
+  return;
+ }
+
+ if(!prompt.trim()){
+  alert("Please enter a video prompt!");
+  return;
+ }
+
+ document.getElementById("status").innerText =
+ "Image and prompt ready! AI generation service is not connected yet.";
 }
 </script>
+
 </body>
 </html>
