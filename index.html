@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GNZ Rahil AI Video Generator</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #101426;
+  color: white;
+  text-align: center;
+}
+.container {
+  padding: 25px;
+}
+h1 { color: #8b7cff; }
+textarea {
+  width: 90%;
+  height: 120px;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 16px;
+}
+button {
+  background: #795cff;
+  color: white;
+  border: none;
+  padding: 14px 25px;
+  border-radius: 10px;
+  margin-top: 15px;
+  font-size: 17px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>GNZ RAHIL AI</h1>
+<h2>AI Video Generator 🎬</h2>
+<p>Apna video prompt likho</p>
+<textarea id="prompt" placeholder="Describe your video..."></textarea>
+<br>
+<button onclick="generate()">Generate Video</button>
+<p id="result"></p>
+</div>
+<script>
+function generate() {
+let p = document.getElementById("prompt").value;
+if(p.trim() === "") {
+document.getElementById("result").innerText =
+"Please enter a prompt!";
+} else {
+document.getElementById("result").innerText =
+"Your prompt: " + p +
+"\n\nVideo generation API abhi connect karni baaki hai.";
+}
+}
+</script>
+</body>
+</html>
